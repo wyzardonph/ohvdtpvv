@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ověření hesla</title>
+  <style>
+    /* Styly pro CSS */
+  </style>
+</head>
+<body>
+  <h1>Ověření hesla</h1>
+  <form action="#" onsubmit="return validatePassword()">
+    <label for="password">Heslo:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <label for="confirmPassword">Potvrďte heslo:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
+    <span id="password-error"></span>
+    <button type="submit">Odeslat</button>
+  </form>
+
+  <script>
+    function validatePassword() {
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirmPassword');
+      const passwordError = document.getElementById('password-error');
+
+      const password = passwordInput.value;
+      const confirmPassword = confirmPasswordInput.value;
+
+      if (password.length < 8) {
+        passwordError.textContent = 'Heslo musí mít délku minimálně 8 znaků.';
+        return false;
+      }
+
+      if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+        passwordError.textContent = 'Heslo musí obsahovat alespoň jedno velké písmeno, jedno malé písmeno a jedno číslo.';
+        return false;
+      }
+
+      if (password !== confirmPassword) {
+        passwordError.textContent = 'Hesla se neshodují.';
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>

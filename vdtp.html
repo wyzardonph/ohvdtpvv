@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validace délky jména</title>
+  <style>
+    /* Styly pro CSS */
+  </style>
+</head>
+<body>
+  <h1>Validace délky jména</h1>
+  <form action="#" onsubmit="return validateName()">
+    <label for="name">Jméno:</label>
+    <input type="text" id="name" name="name" required>
+    <span id="name-error"></span>
+    <button type="submit">Odeslat</button>
+  </form>
+
+  <script>
+    function validateName() {
+      const nameInput = document.getElementById('name');
+      const nameError = document.getElementById('name-error');
+      const nameLength = nameInput.value.length;
+
+      if (nameLength < 3 || nameLength > 20) {
+        nameError.textContent = 'Jméno musí mít délku 3 až 20 znaků.';
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
